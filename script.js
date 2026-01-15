@@ -212,136 +212,36 @@ function resetButtons()
 }
 function findWinner()
 {
-    function ballWinner()
+    for(let i = 0; i < 3; i++)
     {
-        if(buttonStates[0][0] === buttonStates[1][0] && 
-          buttonStates[0][0] === buttonStates[2][0] &&
-          buttonStates[0][0] === 2 
-         )
-         {
-            return true;
-         }
-        if(buttonStates[0][1] === buttonStates[1][1] && 
-          buttonStates[0][1] === buttonStates[2][1] &&
-          buttonStates[0][1] === 2 
-         )
-         {
-            return true;
-         }
-         if(buttonStates[0][2] === buttonStates[1][2] && 
-          buttonStates[0][2] === buttonStates[2][2] &&
-          buttonStates[0][2] === 2 
-         )
-         {
-            return true;
-         }
-        if(buttonStates[0][0] === buttonStates[0][1] && 
-          buttonStates[0][0] === buttonStates[0][2] &&
-          buttonStates[0][0] === 2 
-         )
-         {
-            return true;
-         }
-         if(buttonStates[1][0] === buttonStates[1][1] && 
-          buttonStates[1][0] === buttonStates[1][2] &&
-          buttonStates[1][0] === 2 
-         )
-         {
-            return true;
-         }
-         if(buttonStates[2][0] === buttonStates[2][1] && 
-          buttonStates[2][0] === buttonStates[2][2] &&
-          buttonStates[2][0] === 2 
-         )
-         {
-            return true;
-         }
-         if(buttonStates[0][0] === buttonStates[1][1] && 
-            buttonStates[0][0] === buttonStates[2][2] &&
-            buttonStates[0][0] === 2
-        )
-         {
-            return true;
-         }
-        if(buttonStates[0][2] === buttonStates[1][1] && 
-            buttonStates[0][2] === buttonStates[2][0] &&
-            buttonStates[0][2] === 2
-        )
-         {
-            return true;
-         }
-         return false;
+        const v = buttonStates[i][0]
+        if( v !== 0 && 
+            v === buttonStates[i][1] &&
+            v === buttonStates[i][2]
+        )    
+        {
+            return v;
+        }
     }
-    function xWinner()
+    for(let j = 0; j < 3; j++)
     {
-        if(buttonStates[0][0] === buttonStates[1][0] && 
-          buttonStates[0][0] === buttonStates[2][0] &&
-          buttonStates[0][0] === 1 
-         )
-         {
-            return true;
-         }
-        if(buttonStates[0][1] === buttonStates[1][1] && 
-          buttonStates[0][1] === buttonStates[2][1] &&
-          buttonStates[0][1] === 1 
-         )
-         {
-            return true;
-         }
-         if(buttonStates[0][2] === buttonStates[1][2] && 
-          buttonStates[0][2] === buttonStates[2][2] &&
-          buttonStates[0][2] === 1 
-         )
-         {
-            return true;
-         }
-
-
-
-        if(buttonStates[0][0] === buttonStates[0][1] && 
-          buttonStates[0][0] === buttonStates[0][2] &&
-          buttonStates[0][0] === 1 
-         )
-         {
-            return true;
-         }
-         if(buttonStates[1][0] === buttonStates[1][1] && 
-          buttonStates[1][0] === buttonStates[1][2] &&
-          buttonStates[1][0] === 1 
-         )
-         {
-            return true;
-         }
-         if(buttonStates[2][0] === buttonStates[2][1] && 
-          buttonStates[2][0] === buttonStates[2][2] &&
-          buttonStates[2][0] === 1 
-         )
-         {
-            return true;
-         }
-         if(buttonStates[0][0] === buttonStates[1][1] && 
-            buttonStates[0][0] === buttonStates[2][2] &&
-            buttonStates[0][0] === 1
-        )
-         {
-            return true;
-         }
-        if(buttonStates[0][2] === buttonStates[1][1] && 
-            buttonStates[0][2] === buttonStates[2][0] &&
-            buttonStates[0][2] === 1
-        )
-         {
-            return true;
-         }
-         return false;
+        const v = buttonStates[0][j]
+        if( v !== 0 && 
+            v === buttonStates[1][j] &&
+            v === buttonStates[2][j]
+        )    
+        {
+            return v;
+        }
     }
 
-    if(ballWinner())
-    {
-        return 2;
+    let v = buttonStates[0][0];
+    if(v !== 0 && v === buttonStates[1][1] && v === buttonStates[2][2]){
+        return v;
     }
-    if(xWinner()){
-        return 1;
+    v = buttonStates[0][2];
+    if(v !== 0 && v === buttonStates[1][1] && v === buttonStates[2][0]){
+        return v;
     }
     return 0;
 }
